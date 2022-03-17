@@ -104,8 +104,7 @@ function processKey() {
 
 function processInput(e) {
     if(gameOver){
-        if(row > height) alert(word);
-        else alert("congratulations!");
+        //if(row > height) alert(word);
         return;
     }
 
@@ -133,6 +132,9 @@ function processInput(e) {
         }
         else{
             update();
+            if(gameOver) {
+                alert("congratulations!");
+            }
         }
         
     }
@@ -140,13 +142,13 @@ function processInput(e) {
     if (!gameOver && row == height) {
         gameOver = true;
         row++;
-        //alert(word);
+        alert(word);
     }
 }
 
 function update() {
     let guess = "";
-    document.getElementById("answer").innerText = "";
+    //document.getElementById("answer").innerText = "";
 
     //string up the guesses into the word
     for (let c = 0; c < width; c++) {
