@@ -161,3 +161,13 @@ body {
     color: white;
     border-color: #787C7E;
 }
+
+button.icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+svg {
+    vertical-align: middle;
+}

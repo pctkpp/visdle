@@ -34,6 +34,7 @@ function intialize() {
             let tile = document.createElement("span");
             tile.id = r.toString() + "-" + c.toString();
             tile.classList.add("tile");
+            tile.classList.add("animate__animated");
             tile.innerText = "";
             tileRow.appendChild(tile);
         }
@@ -190,6 +191,7 @@ function update() {
         //Is it in the correct position?
         if (word[c] == letter) {
             currTile.classList.add("correct");
+            currTile.classList.add("animate__flipInX");   
 
             let keyTile = document.getElementById("Key" + letter);
 
@@ -222,14 +224,18 @@ function update() {
                     keyTile.classList.add("present");
                 }
                 letterCount[letter] -= 1;
+                
             } // Not in the word or (was in word but letters all used up to avoid overcount)
             else {
                 currTile.classList.add("absent");
                 let keyTile = document.getElementById("Key" + letter);
+              
                 if (!keyTile.classList.contains("correct") && !keyTile.classList.contains("present")) {
                     keyTile.classList.add("absent");
                 }
+                
             }
+            currTile.classList.add("animate__flipInX");   
         }
     }
 
