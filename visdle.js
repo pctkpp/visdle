@@ -213,6 +213,7 @@ function update() {
         let currTile = document.getElementById(row.toString() + '-' + c.toString());
         let letter = currTile.innerText;
 
+        currTile.classList.add("animate__flipInX");
         // skip the letter if it has been marked correct
         if (!currTile.classList.contains("correct")) {
             //Is it in the word?         //make sure we don't double count
@@ -229,14 +230,14 @@ function update() {
             else {
                 currTile.classList.add("absent");
                 let keyTile = document.getElementById("Key" + letter);
-              
+            
                 if (!keyTile.classList.contains("correct") && !keyTile.classList.contains("present")) {
                     keyTile.classList.add("absent");
                 }
                 
-            }
-            currTile.classList.add("animate__flipInX");   
+            } 
         }
+            
     }
 
     row += 1; //start new row
