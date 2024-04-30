@@ -1,245 +1,481 @@
-var height = 6; //number of guesses
-var width = 5; //length of the word
+///////--------TOP BAR
 
-var row = 0; //current guess (attempt #)
-var col = 0; //current letter for that attempt
+let helpButton = document.getElementById("help-button");
+let closeHelp = document.getElementById("close-help-button");
+helpButton.addEventListener("click", showHelpPage);
+closeHelp.addEventListener("click", closeHelpPage);
 
-var gameOver = false;
-
-var wordList = ["alisa", "amada", "artur", "arwae", "belle", "bonus", "boost", "brook", "buboo", "chain", "champ", "chris", "cocoa", "cream", "david", "dawit", "delia", "dream", "earny", "earth", "fasai", "games", "gidja", "gorka", "great", "gunta", "harut", "heart", "ikkue", "imaim", "imjai", "jaden", "james", "jamie", "jerry", "jinny", "johan", "kanes", "kanin", "kanok", "kenji", "keyes", "khing", "kraus", "kream", "kueng", "kwang", "lacey", "lapas", "lapon", "major", "manow", "maria", "marky", "matin", "meemi", "mhong", "miles", "mimie", "minor", "modem", "napat", "napol", "nenno", "neung", "nicha", "nilsu", "ninja", "nokia", "nueng", "oboon", "osumi", "pakin", "palma", "palmy", "party", "pauli", "peach", "pedro", "petch", "phone", "phoom", "pinky", "pleum", "pomme", "pound", "power", "praew", "pream", "pueng", "pusit", "quere", "ratch", "ratha", "roong", "sakol", "sarun", "scene", "scott", "shain", "smart", "smith", "stamp", "suang", "sukit", "sumon", "talay", "tatar", "teddy", "teeth", "tharn", "thime", "three", "tonpo", "touch", "turbo", "ultra", "veroj", "vetit", "wanat", "watit", "wearn", "willy", "yokfa", "yoshi"]
-var guessList = []
-
-guessList = guessList.concat(wordList);
-
-var word = wordList[Math.floor(Math.random()*wordList.length)].toUpperCase();
-
-width = word.length;
-
-console.log(word);
-
-window.onload = function(){
-    intialize();
+function showHelpPage() {
+    document.getElementById("help-page-container").classList.add("show");
 }
 
+function closeHelpPage() {
+    document.getElementById("help-page-container").classList.remove("show");
+}
 
-function intialize() {
+///////--------NAMELIST
+const teacher = [
+    "Pomme", 
+    "Ratch", 
+    "Pakin", 
+    "Neung", 
+    "Lacey", 
+    "Pueng", 
+    "Sakol", 
+    "Smith", 
+    "Gidja", 
+    "Artur", 
+    "Smart", 
+    "Sarun", 
+    "Imjai", 
+    "Party", 
+    "David", 
+    "Miles", 
+    "Chris", 
+    "Maria", 
+    "Johan", 
+    "Delia", 
+    "Arwae", 
+    "Kanes", 
+    "Yokfa", 
+    "Champ", 
+    "Nilsu", 
+    "Tammy",
+    "Palma",
+    "Gorka", 
+    "Kraus", 
+    "Jamie", 
+    "Scott", 
+    "Kwang"
+];
+const batch1 = [
+    "Manow", 
+    "Phoom", 
+    "Sukit", 
+    "Gunta", 
+    "Kanin", 
+    "Khing", 
+    "Nueng", 
+    "Boost", 
+    "Alisa", 
+    "Buboo", 
+    "Quere", 
+    "Suang", 
+    "Roong", 
+    "Tonpo"
+];
+const batch2 = [
+    "Tharn", 
+    "Cocoa", 
+    "Nicha", 
+    "Heart", 
+    "Lapon", 
+    "Lapas", 
+    "Harut", 
+    "Ninja", 
+    "Earth", 
+    "James"
+];
+const batch3 = [
+    "Champ", 
+    "Brook", 
+    "Ikkue", 
+    "Teeth", 
+    "Earth"
+];
+const batch4 = [
+    "Napat", 
+    "Three", 
+    "Sumon", 
+    "Jinny", 
+    "Cream", 
+    "James", 
+    "Palmy", 
+    "Wearn", 
+    "Watit", 
+    "Khing", 
+    "Major", 
+    "Jerry", 
+    "Fasai", 
+    "Vetit", 
+    "Ultra", 
+    "Jaden", 
+    "Talay", 
+    "Touch", 
+    "Earny", 
+    "Nokia"
+];
+const batch5 = [
+    "Mhong", 
+    "Tatar", 
+    "Dream", 
+    "Petch", 
+    "Belle", 
+    "Scene", 
+    "Mimie", 
+    "James", 
+    "Chain", 
+    "Ikkue", 
+    "Dawit", 
+    "Ratha", 
+    "Napol", 
+    "Kanok", 
+    "Napat", 
+    "Wanat", 
+    "Thime", 
+    "Modem", 
+    "Shain", 
+    "Bonus", 
+    "Pleum"
+];
+const batch6 = [
+    "Teddy", 
+    "Modem", 
+    "Pauli", 
+    "Pusit", 
+    "Petch", 
+    "Power", 
+    "Amada", 
+    "Major", 
+    "Pream", 
+    "Minor", 
+    "Great", 
+    "Champ", 
+    "Pinky", 
+    "Yoshi"
+];
+const batch7 = [
+    "Imaim", 
+    "Oboon", 
+    "Nenno", 
+    "Pleum", 
+    "Meemi", 
+    "Kueng", 
+    "Kenji", 
+    "Willy", 
+    "Peach", 
+    "Veroj", 
+    "Matin"
+];
+const batch8 = [
+    "Napat", 
+    "Thiti", 
+    "Kiang", 
+    "Janja", 
+    "Cream", 
+    "Meena", 
+    "Punya", 
+    "Earth", 
+    "Music", 
+    "Focus", 
+    "Prann", 
+    "Yoshi", 
+    "Bpoon", 
+    "Prima", 
+    "Sirot", 
+    "Sugus", 
+    "Thank", 
+    "Frame", 
+    "Pluem", 
+    "Tanya", 
+    "Belle"
+];
 
-    // Create the game board
-    for (let r = 0; r < height; r++) {
-        let tileRow = document.createElement("div");
-        tileRow.classList.add("tile-row");
+const all = [
+    teacher, batch1, batch2, batch3, batch4, batch5, batch6, batch7, batch8
+];
 
-        for (let c = 0; c < width; c++) {
-            // <span id="0-0" class="tile">P</span>
-            let tile = document.createElement("span");
-            tile.id = r.toString() + "-" + c.toString();
-            tile.classList.add("tile");
-            tile.classList.add("animate__animated");
-            tile.innerText = "";
-            tileRow.appendChild(tile);
-        }
+let allname = new Map();
 
-        document.getElementById("board").appendChild(tileRow);
+for (b=0;b<all.length;b++) {
+    let list = all[b];
+    let batch = "";
+    if(b===0) {
+        batch = "Teacher";
+    }
+    else {
+        batch = "Batch " + b;
     }
 
-    // Create the key board
-    let keyboardContain = document.createElement("div");
-    keyboardContain.classList.add("keyboard-container");
+    for(i=0;i<list.length;i++) {
+        let name = list[i].toLowerCase();
+        if(allname.has(name)) {
+            let existingValues = allname.get(name);
+            existingValues.push(batch);
+            allname.set(name, existingValues);
+        }
+        else {
+            allname.set(name, [batch]);
+        }
+    }
+}
 
+//console.log(allname);
+
+function getRandomKey(collection) {
+    let keys = Array.from(collection);
+    return keys[Math.floor(Math.random() * keys.length)];
+}
+
+const fullword = getRandomKey(allname);
+console.log(fullword);
+
+const namelist = Array.from(allname.keys());
+console.log(namelist);
+
+///////--------GAME MODULE
+
+const word = fullword[0];
+console.log(word);
+
+var height = 6;
+var width = 5;
+var correctGuess = false;
+
+//state
+var row = 0;
+var col = 0;
+
+
+//start
+function setTile() {
+
+    for (let i=0;i<height;i++) {
+        let tileRow = document.createElement("div");
+        tileRow.className = "tile-row";
+
+        for (let j=0;j<width;j++) {
+            let tile = document.createElement("div");
+            tile.id = 'tile'+i+j;
+            tile.classList.add("tile");
+            tile.innerText = '';
+
+            tileRow.appendChild(tile);
+        }
+        document.getElementById("tile-container").appendChild(tileRow);
+    }
+}
+
+setTile();
+
+function setKeyboard() {
+    
+    //KEYBOARD TILE
     let keyboard = [
         ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
         ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
-        ["Enter", "Z", "X", "C", "V", "B", "N", "M", "⌫" ]
+        ["↪", "Z", "X", "C", "V", "B", "N", "M", "⌫" ]
     ]
 
-    for (let i = 0; i < keyboard.length; i++) {
-        let currRow = keyboard[i];
-        let keyboardRow = document.createElement("div");
-        keyboardRow.classList.add("keyboard-row");
+    for (let i=0;i<3;i++) {
+        let keyRow = document.createElement("div");
+        keyRow.className = "key-row";
 
-        for (let j = 0; j < currRow.length; j++) {
-            let keyTile = document.createElement("div");
+        for (let j=0;j<keyboard[i].length;j++) {
+            let key = document.createElement("button");
+            key.id = "key" + keyboard[i][j];
+            key.innerText = keyboard[i][j];
 
-            let key = currRow[j];
-            keyTile.innerText = key;
-
-            if (key == "Enter") {
-                keyTile.id = "Enter";
+            if (key.innerText === "↪") {
+                key.classList.add("key");
+                key.classList.add("large");
+                key.addEventListener("click", function() {
+                    handleInput("Enter");
+                });
             }
-            else if (key == "⌫") {
-                keyTile.id = "Backspace";
-            }
-            else if ("A" <= key && key <= "Z") {
-                keyTile.id = "Key" + key; // "Key" + "A";
-            } 
-
-            keyTile.addEventListener("click", processKey);
-
-            if (key == "Enter") {
-                keyTile.classList.add("enter-key-tile");
-            }
-            else if (key == "⌫") {
-                keyTile.classList.add("backspace-key-tile");
+            if (key.innerText === "⌫") {
+                key.classList.add("key");
+                key.classList.add("large");
+                key.addEventListener("click", function() {
+                    handleInput("Backspace");
+                });
             }
             else {
-                keyTile.classList.add("key-tile");
+                key.classList.add("key");
+                key.addEventListener("click", function() {
+                    handleInput(key.innerText);
+                });
             }
-            keyboardRow.appendChild(keyTile);
+            
+            keyRow.appendChild(key);
         }
-        keyboardContain.appendChild(keyboardRow);
+        document.getElementById("keyboard-container").appendChild(keyRow);
     }
 
-    document.getElementById("game-container").appendChild(keyboardContain);
+    //KEY PRESS
+    document.addEventListener("keydown", function(e) {
+    
+        if (e.key === "Delete" || e.key === "Backspace") {
+            handleInput("Backspace"); 
+        }
+        else if (e.key === "Enter") {
+            handleInput(e.key); 
+        }
+        else if (e.key.match(/^[a-zA-Z]$/)) {
+            handleInput(e.key.toUpperCase());
+        }
+    });
 
-    // Listen for Key Press
-    document.addEventListener("keyup", (e) => {
-        processInput(e);
-    })
 }
 
-function processKey() {
-    e = { "code" : this.id };
-    processInput(e);
-}
+setKeyboard();
 
-function processInput(e) {
-    if(gameOver){
-        //if(row > height) alert(word);
+function handleInput(e) {
+    //console.log(e);
+   
+    if(correctGuess || row>=6) {
         return;
     }
 
-    // alert(e.code);
-    if ("KeyA" <= e.code && e.code <= "KeyZ") {
-        if (col < width) {
-            let currTile = document.getElementById(row.toString() + '-' + col.toString());
-            if (currTile.innerText == "") {
-                currTile.innerText = e.code[3];
-                col += 1;
+    if (e === "Backspace") {
+        if (col > 0) {
+            col--;
+            document.getElementById("tile"+row+col).innerText = '';
+            document.getElementById("tile"+row+col).classList.remove("text");
+        }
+    }
+    else if (e === "Enter") {
+        if (col < 5) {
+            alert("Not Enough Letters");
+        }
+        else {
+            let guess = "";
+            for (let j=0;j<5;j++) {
+                guess += document.getElementById("tile"+row+j).innerText;
+            }
+            guess = guess.toLowerCase();
+            //console.log(guess);
+
+            if (!namelist.includes(guess)) {
+                alert("Not in Namelist");
+            }
+            else {
+                processGuess(guess);
             }
         }
     }
-    else if (e.code == "Backspace") {
-        if (0 < col && col <= width) {
-            col -=1;
+    else if (e >= 'A' && e <='Z') {
+        if (col < 5) {
+            document.getElementById("tile"+row+col).innerText = e;
+            document.getElementById("tile"+row+col).classList.add("text");
+            col++;
         }
-        let currTile = document.getElementById(row.toString() + '-' + col.toString());
-        currTile.innerText = "";
-    }
-
-    else if (e.code == "Enter") {
-        if(col < width){
-            alert("need more letters");
-        }
-        else{
-            update();
-            if(gameOver) {
-                alert("congratulations!");
-            }
-        }
-        
-    }
-
-    if (!gameOver && row == height) {
-        gameOver = true;
-        row++;
-        alert(word);
-    }
-}
-
-function update() {
-    let guess = "";
-    //document.getElementById("answer").innerText = "";
-
-    //string up the guesses into the word
-    for (let c = 0; c < width; c++) {
-        let currTile = document.getElementById(row.toString() + '-' + c.toString());
-        let letter = currTile.innerText;
-        guess += letter;
-    }
-
-    guess = guess.toLowerCase(); //case sensitive
-    console.log(guess);
-
-    if (!guessList.includes(guess)) {
-        //document.getElementById("answer").innerText = "Not in a namelist";
-        alert("Not in a namelist");
-        return;
     }
     
-    //start processing guess
+
+}
+
+function processGuess(guess) {
+
+    const animated_duration = 500;
+
     let correct = 0;
 
-    let letterCount = {}; //keep track of letter frequency, ex) KENNY -> {K:1, E:1, N:2, Y: 1}
-    for (let i = 0; i < word.length; i++) {
+    let letterCount = {};
+    for (let i=0;i<5;i++) {
         let letter = word[i];
-
-        if (letterCount[letter]) {
-           letterCount[letter] += 1;
-        } 
+        
+        if(letterCount[letter]) {
+            letterCount[letter]++;
+        }
         else {
-           letterCount[letter] = 1;
+            letterCount[letter] = 1;
+        }
+    }
+    //console.log(letterCount);
+
+    //CHECK CORRECT
+    for (let j=0;j<5;j++) {
+        let tile = document.getElementById("tile" + row + j);
+        let key = document.getElementById("key" + guess[j].toUpperCase());
+
+        if(guess[j] === word[j]) {
+            setTimeout(() => {
+                tile.classList.add("correct");
+                key.classList.add("correct");
+            }, ((j+1) * animated_duration) / 2);
+            
+            
+            tile.classList.add("animated");
+            tile.style.animationDelay = `${(j * animated_duration) / 2}ms`;
+
+            correct++;
+            letterCount[guess[j]]--;
         }
     }
 
-    console.log(letterCount);
-
-    //first iteration, check all the correct ones first
-    for (let c = 0; c < width; c++) {
-        let currTile = document.getElementById(row.toString() + '-' + c.toString());
-        let letter = currTile.innerText;
-
-        //Is it in the correct position?
-        if (word[c] == letter) {
-            currTile.classList.add("correct");
-            currTile.classList.add("animate__flipInX");   
-
-            let keyTile = document.getElementById("Key" + letter);
-
-            keyTile.classList.remove("present");
-            keyTile.classList.add("correct");
-
-            correct += 1;
-            letterCount[letter] -= 1; //deduct the letter count
-        }
-
-        if (correct == width) {
-            gameOver = true;
-        }
+    if (correct === width) {
+        console.log("yay");
+        correctGuess = true;
     }
 
-    console.log(letterCount);
-    //go again and mark which ones are present but in wrong position
-    for (let c = 0; c < width; c++) {
-        let currTile = document.getElementById(row.toString() + '-' + c.toString());
-        let letter = currTile.innerText;
+    if (correctGuess) {
+        setTimeout(congrat, 1550);
+    }
 
-        currTile.classList.add("animate__flipInX");
-        // skip the letter if it has been marked correct
-        if (!currTile.classList.contains("correct")) {
-            //Is it in the word?         //make sure we don't double count
-            if (word.includes(letter) && letterCount[letter] > 0) {
-                currTile.classList.add("present");
+
+    //CHECK PRESENT / ABSENT
+    for (let j=0;j<5;j++) {
+        let tile = document.getElementById("tile" + row + j);
+        let key = document.getElementById("key" + guess[j].toUpperCase());
+
+        if(!tile.classList.contains("correct")) {
+            if (word.includes(guess[j]) && letterCount[guess[j]]>0) {
+                setTimeout(() => {
+                    tile.classList.add("present");
+                }, ((j+1) * animated_duration) / 2);
                 
-                let keyTile = document.getElementById("Key" + letter);
-                if (!keyTile.classList.contains("correct")) {
-                    keyTile.classList.add("present");
+                tile.classList.add("animated");
+                tile.style.animationDelay = `${(j * animated_duration) / 2}ms`;
+
+                if(!key.classList.contains("correct")) {
+                    key.classList.add("present");
                 }
-                letterCount[letter] -= 1;
-                
-            } // Not in the word or (was in word but letters all used up to avoid overcount)
+
+                letterCount[guess[j]]--;
+            }
             else {
-                currTile.classList.add("absent");
-                let keyTile = document.getElementById("Key" + letter);
-            
-                if (!keyTile.classList.contains("correct") && !keyTile.classList.contains("present")) {
-                    keyTile.classList.add("absent");
-                }
+                setTimeout(() => {
+                    tile.classList.add("absent");
+                }, ((j+1) * animated_duration) / 2);
                 
-            } 
+                key.classList.add("absent");
+                
+                tile.classList.add("animated");
+                tile.style.animationDelay = `${(j * animated_duration) / 2}ms`;
+
+            }
         }
-            
     }
 
-    row += 1; //start new row
-    col = 0; //start at 0 for new row
+    row++;
+    col = 0;
+
+    if (row>=6 && (!correctGuess)) {
+        setTimeout(fail, 1550);
+    }
+
+}
+
+function congrat() {
+    let yay = "Goose Job! - " + word.toUpperCase() + " (";
+    let batch = fullword[1][0];
+    for (i=1;i<fullword[1].length;i++) {
+        batch += ", " + fullword[1][i]; 
+    }
+    yay += batch + ")";
+    console.log(yay);
+
+    alert(yay);
+    
+}
+
+function fail() {
+    let fail = "The name is " + word.toUpperCase() + " (";
+    let batch = fullword[1][0];
+    for (i=1;i<fullword[1].length;i++) {
+        batch += ", " + fullword[1][i]; 
+    }
+    fail += batch + ") :P";
+    alert(fail);
 }
