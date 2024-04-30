@@ -483,31 +483,69 @@ function processGuess(guess) {
     col = 0;
 
     if (row>=6 && (!gameOver)) {
+        row++;
         setTimeout(fail, 1550);
     }
 
 }
 
 function congrat() {
-    let yay = "Goose Job! - " + word.toUpperCase() + " (";
+    let yay = "Goose Job! - " + word.toUpperCase() + "\n(";
     let batch = fullword[1][0];
     for (i=1;i<fullword[1].length;i++) {
         batch += ", " + fullword[1][i]; 
     }
     yay += batch + ")";
-    console.log(yay);
 
     alertMessage(yay, 3000);
+    setTimeout(() => {
+        processResult();
+    }, 3000);
     
 }
 
 function fail() {
-    let fail = "The name is " + word.toUpperCase() + " (";
+    let fail = word.toUpperCase() + " :P\n(";
     let batch = fullword[1][0];
     for (i=1;i<fullword[1].length;i++) {
         batch += ", " + fullword[1][i]; 
     }
-    fail += batch + ") :P";
+    fail += batch + ")";
     
     alertMessage(fail, 5000);
+    processResult();
+}
+
+function processResult() {
+    let result = "Visdle ";
+    //console.log(row);
+
+    if(row>6) {
+        result += "X";
+    }
+    else {
+        result += row;
+    }
+    result += "/6" + '\n\n';
+
+    for (let i=0;i<row;i++) {
+        for (let j=0;j<5;j++) {
+            let tile = document.getElementById("tile"+i+j);
+            if(tile.classList.contains("correct")) {
+                result += "🟩";
+            }
+            else if (tile.classList.contains("present")) {
+                result += "🟪";
+            }
+            else {
+                result += "⬜";
+            }
+        }
+        result += '\n';
+    }
+
+    console.log(result);
+}
+
+function showShareResult(result) {
 }
