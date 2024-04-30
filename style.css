@@ -6,7 +6,7 @@ html {
 }
 
 body {
-    font-family: "Readex Pro", Arial, Helvetica, sans-serif;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
 :root {
@@ -121,9 +121,8 @@ button {
     background-color: lightgray;
     border: none;
     border-radius: 5px;
-    font-family: "Readex Pro", Arial, Helvetica, sans-serif;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
     cursor: pointer;
 }
 
@@ -175,7 +174,7 @@ button {
     box-shadow: 0 4px 20px 0 rgba(0,0,0,.2);
     padding: 30px;
     font-size: 16px;
-    font-weight: 200;
+    font-weight: 300;
 }
 
 .pop-up ul {
