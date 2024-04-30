@@ -46,7 +46,8 @@ const teacher = [
     "Kraus", 
     "Jamie", 
     "Scott", 
-    "Kwang"
+    "Kwang",
+    "Nadia"
 ];
 const batch1 = [
     "Manow", 
@@ -264,7 +265,7 @@ function setKeyboard() {
     let keyboard = [
         ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
         ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
-        ["↪", "Z", "X", "C", "V", "B", "N", "M", "⌫" ]
+        ["↳", "Z", "X", "C", "V", "B", "N", "M", "⌫" ]
     ]
 
     for (let i=0;i<3;i++) {
@@ -276,7 +277,7 @@ function setKeyboard() {
             key.id = "key" + keyboard[i][j];
             key.innerText = keyboard[i][j];
 
-            if (key.innerText === "↪") {
+            if (key.innerText === "↳") {
                 key.classList.add("key");
                 key.classList.add("large");
                 key.addEventListener("click", function() {
