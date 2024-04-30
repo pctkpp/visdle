@@ -246,6 +246,8 @@ button {
         margin: 1px;
     }
     .key.large {
+        font-family: "Inter", Arial, Helvetica, sans-serif;
+        font-weight: bolder;
         width: 49px;
         height: 46px;
     }
