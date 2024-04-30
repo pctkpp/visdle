@@ -256,7 +256,7 @@ console.log(word);
 
 var height = 6;
 var width = 5;
-var correctGuess = false;
+var gameOver = false;
 
 //state
 var row = 0;
@@ -349,7 +349,7 @@ setKeyboard();
 function handleInput(e) {
     //console.log(e);
    
-    if(correctGuess || row>=6) {
+    if(gameOver || row>=6) {
         return;
     }
 
@@ -436,11 +436,11 @@ function processGuess(guess) {
     }
 
     if (correct === width) {
-        console.log("yay");
-        correctGuess = true;
+        //console.log("yay");
+        gameOver = true;
     }
 
-    if (correctGuess) {
+    if (gameOver) {
         setTimeout(congrat, 1550);
     }
 
@@ -482,7 +482,7 @@ function processGuess(guess) {
     row++;
     col = 0;
 
-    if (row>=6 && (!correctGuess)) {
+    if (row>=6 && (!gameOver)) {
         setTimeout(fail, 1550);
     }
 
