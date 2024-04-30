@@ -13,6 +13,24 @@ function closeHelpPage() {
     document.getElementById("help-page-container").classList.remove("show");
 }
 
+
+///////--------ALERT
+
+function alertMessage(message, time) {
+    let alertContainer = document.getElementById("alert-container");
+    let alert = document.createElement("div");
+    alert.className = "alert";
+    alert.innerText = message;
+    alertContainer.appendChild(alert);
+
+    setTimeout(() => {
+        alert.classList.add("hidden");
+        alert.addEventListener("transitionend", () => {
+            alert.remove();
+        })
+    }, time);
+}
+
 ///////--------NAMELIST
 const teacher = [
     "Pomme", 
@@ -47,7 +65,8 @@ const teacher = [
     "Jamie", 
     "Scott", 
     "Kwang",
-    "Nadia"
+    "Nadia",
+    "Ukrit"
 ];
 const batch1 = [
     "Manow", 
@@ -181,9 +200,12 @@ const batch8 = [
     "Tanya", 
     "Belle"
 ];
+const skeleton = [
+    "Steve"
+];
 
 const all = [
-    teacher, batch1, batch2, batch3, batch4, batch5, batch6, batch7, batch8
+    teacher, batch1, batch2, batch3, batch4, batch5, batch6, batch7, batch8, skeleton
 ];
 
 let allname = new Map();
@@ -193,6 +215,9 @@ for (b=0;b<all.length;b++) {
     let batch = "";
     if(b===0) {
         batch = "Teacher";
+    }
+    else if (b===all.length-1) {
+        batch = "Skeleton in biology room";
     }
     else {
         batch = "Batch " + b;
@@ -211,7 +236,7 @@ for (b=0;b<all.length;b++) {
     }
 }
 
-//console.log(allname);
+console.log(allname);
 
 function getRandomKey(collection) {
     let keys = Array.from(collection);
@@ -222,7 +247,7 @@ const fullword = getRandomKey(allname);
 console.log(fullword);
 
 const namelist = Array.from(allname.keys());
-console.log(namelist);
+//console.log(namelist);
 
 ///////--------GAME MODULE
 
@@ -337,7 +362,7 @@ function handleInput(e) {
     }
     else if (e === "Enter") {
         if (col < 5) {
-            alert("Not Enough Letters");
+            alertMessage("Not enough letters", 1000);
         }
         else {
             let guess = "";
@@ -348,7 +373,12 @@ function handleInput(e) {
             //console.log(guess);
 
             if (!namelist.includes(guess)) {
-                alert("Not in Namelist");
+                if(guess==="zewer") {
+                    alertMessage("Not Zewern bruh", 1000);
+                }
+                else {
+                    alertMessage("Not in namelist", 1000);
+                }
             }
             else {
                 processGuess(guess);
@@ -467,7 +497,7 @@ function congrat() {
     yay += batch + ")";
     console.log(yay);
 
-    alert(yay);
+    alertMessage(yay, 3000);
     
 }
 
@@ -478,5 +508,6 @@ function fail() {
         batch += ", " + fullword[1][i]; 
     }
     fail += batch + ") :P";
-    alert(fail);
+    
+    alertMessage(fail, 5000);
 }
