@@ -2,6 +2,7 @@
 
 let helpButton = document.getElementById("help-button");
 let closeHelp = document.getElementById("close-help-button");
+
 helpButton.addEventListener("click", showHelpPage);
 closeHelp.addEventListener("click", closeHelpPage);
 
@@ -441,7 +442,7 @@ function processGuess(guess) {
     }
 
     if (gameOver) {
-        setTimeout(congrat, 1550);
+        setTimeout(congrat, 1600);
     }
 
 
@@ -484,36 +485,28 @@ function processGuess(guess) {
 
     if (row>=6 && (!gameOver)) {
         row++;
-        setTimeout(fail, 1550);
+        setTimeout(fail, 1600);
     }
 
 }
 
 function congrat() {
-    let yay = "Goose Job! - " + word.toUpperCase() + "\n(";
-    let batch = fullword[1][0];
-    for (i=1;i<fullword[1].length;i++) {
-        batch += ", " + fullword[1][i]; 
-    }
-    yay += batch + ")";
-
-    alertMessage(yay, 3000);
+    alertMessage("Goose job!", 1000);
     setTimeout(() => {
-        processResult();
-    }, 3000);
-    
+        let result = processResult();
+        showShareResult(result);
+    }, 1000);
 }
 
 function fail() {
-    let fail = word.toUpperCase() + " :P\n(";
-    let batch = fullword[1][0];
-    for (i=1;i<fullword[1].length;i++) {
-        batch += ", " + fullword[1][i]; 
-    }
-    fail += batch + ")";
+    let fail = word.toUpperCase() + " :P";
     
-    alertMessage(fail, 5000);
-    processResult();
+    alertMessage(fail, 1000);
+
+    setTimeout(() => {
+       let result = processResult();
+        showShareResult(result);
+    }, 1000);
 }
 
 function processResult() {
@@ -528,7 +521,7 @@ function processResult() {
     }
     result += "/6" + '\n\n';
 
-    for (let i=0;i<row;i++) {
+    for (let i=0;i<row && i<6;i++) {
         for (let j=0;j<5;j++) {
             let tile = document.getElementById("tile"+i+j);
             if(tile.classList.contains("correct")) {
@@ -543,9 +536,47 @@ function processResult() {
         }
         result += '\n';
     }
+    result += '\n' + "Guess KVISian name in 6 tries.\nhttps://pctkpp.github.io/visdle/";
 
     console.log(result);
+
+    return result;
 }
 
-function showShareResult(result) {
+function showShareResult(result) {    
+    let closeShare = document.getElementById("close-share-button");
+    closeShare.addEventListener("click", closeSharePage);
+
+    //let shareResultButton = document.getElementById("share-result-button");
+    //shareResultButton.addEventListener("click", copyResult(result));
+    
+    let guess = "";
+    if(row>6) {
+        guess += "X";
+    }
+    else {
+        guess += row;
+    }
+    guess += "/6"
+
+    document.getElementById("share-guess").innerText = guess;
+    document.getElementById("share-word").innerText = word.toUpperCase();
+    
+    let batchList = document.getElementById("share-batch");
+    for(i=0;i<fullword[1].length;i++) {
+        let li = document.createElement('li');
+        li.innerText = fullword[1][i];
+        batchList.appendChild(li);
+    }
+
+    document.getElementById("share-page-container").classList.add("show");
+}
+
+function closeSharePage() {
+    document.getElementById("share-page-container").classList.remove("show");
+}
+
+function copyResult(result) {
+    //navigator.clipboard.writeText(result);
+    alertMessage("Copied results to clipboard", 1000);
 }

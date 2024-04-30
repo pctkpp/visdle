@@ -13,13 +13,20 @@
 
 </head>
 <body>
-
-    <!--ALERT-->
-    <div id="alert-container">
-    </div>
-
     <!--SHARE POP UP-->
     <div class="popup-container" id="share-page-container">
+        <div id="share-page" class="pop-up">
+            <button id="close-share-button">
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
+                </svg>                  
+            </button>
+            <h3 id="share-guess"></h3>
+            <h2 id="share-word"></h2>
+            <ul id="share-batch">
+            </ul>
+            <button id="share-result-button">Share Results</button>
+        </div>
     </div>
 
     <!--HELP POP UP-->
@@ -60,6 +67,9 @@
         </div>
     </div>
     
+    <!--ALERT-->
+    <div id="alert-container">
+    </div>
 
     <!--TOP BAR-->
     <div id="top-bar">

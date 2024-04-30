@@ -20,6 +20,7 @@ button {
 }
 
 #top-bar {
+    z-index: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -50,6 +51,7 @@ button {
 }
 
 #game-board {
+    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -169,6 +171,7 @@ button {
 }
 
 .pop-up {
+    z-index: 10;
     position: fixed;
     width: 430px;
     background-color: white;
@@ -223,8 +226,26 @@ button {
     font-size: 26px;
 }
 
+#share-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#share-result-button {
+    position: initial;
+    display: block;
+    background-color: var(--correct);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px;
+    margin-top: 25px;
+    border-radius: 4px;
+}
+
 #alert-container {
-    z-index: 0;
+    z-index: 5;
     position: fixed;
     top: 10vw;
     left: 50vw;
