@@ -1,2 +1,3 @@
-# visdle
---IN PROGRESS-- don't expect anything
+# VISDLE
+Guess a KVISian name.
+(Inspired from Wordle)
