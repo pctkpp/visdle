@@ -547,8 +547,10 @@ function showShareResult(result) {
     let closeShare = document.getElementById("close-share-button");
     closeShare.addEventListener("click", closeSharePage);
 
-    //let shareResultButton = document.getElementById("share-result-button");
-    //shareResultButton.addEventListener("click", copyResult(result));
+    let shareResultButton = document.getElementById("share-result-button");
+    shareResultButton.addEventListener("click", function() {
+        copyResult(result);
+    });
     
     let guess = "";
     if(row>6) {
@@ -578,5 +580,7 @@ function closeSharePage() {
 
 function copyResult(result) {
     //navigator.clipboard.writeText(result);
+    console.log(result);
+    navigator.clipboard.writeText(result);
     alertMessage("Copied results to clipboard", 1000);
 }
