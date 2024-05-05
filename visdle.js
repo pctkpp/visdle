@@ -176,7 +176,8 @@ const batch7 = [
     "Willy", 
     "Peach", 
     "Veroj", 
-    "Matin"
+    "Matin",
+    "Pound" 
 ];
 const batch8 = [
     "Napat", 
