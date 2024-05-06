@@ -67,7 +67,8 @@ const teacher = [
     "Scott", 
     "Kwang",
     "Nadia",
-    "Ukrit"
+    "Ukrit",
+    "Sinee"
 ];
 const batch1 = [
     "Manow", 
@@ -102,7 +103,8 @@ const batch3 = [
     "Brook", 
     "Ikkue", 
     "Teeth", 
-    "Earth"
+    "Earth",
+    "Turbo"
 ];
 const batch4 = [
     "Napat", 
