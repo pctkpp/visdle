@@ -204,12 +204,38 @@ const batch8 = [
     "Tanya", 
     "Belle"
 ];
+const batch9 = [
+    "Sense",
+    "Tames",
+    "Pleum",
+    "Fafah",
+    "Champ",
+    "Manow",
+    "Purin",
+    "Pugun",
+    "Putter",
+    "Kendo",
+    "Focus",
+    "Putto",
+    "Grace",
+    "Napat",
+    "Cream",
+    "Miles"
+];
+const batch10 = [
+    "Music",
+    "Lucky",
+    "Angie",
+    "Yacht",
+    "Peach",
+    "Pasit"
+];
 const skeleton = [
     "Steve"
 ];
 
 const all = [
-    teacher, batch1, batch2, batch3, batch4, batch5, batch6, batch7, batch8, skeleton
+    teacher, batch1, batch2, batch3, batch4, batch5, batch6, batch7, batch8, batch9, batch10, skeleton
 ];
 
 let allname = new Map();
